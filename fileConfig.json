@@ -1,0 +1,8 @@
+{
+  "localPublicPath": "assets/",
+  "localPrivatePath": "private/",
+  "uploadPublicPath": "assets/",
+  "uploadPrivatePath": "private/",
+  "downloadPublicPath": "backup/",
+  "downloadPrivatePath": "backup-private/"
+}

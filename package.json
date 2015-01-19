@@ -1,7 +1,7 @@
 {
-  "name": "grunt-s3",
+  "name": "grunt-s3-config",
   "version": "0.0.0",
-  "description": "Grunt s3 sandbox.",
+  "description": "grunt-aws-s3 generic configuration for uploading, downloading, and deleting files in s3.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "grunt test"
@@ -11,6 +11,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-aws-s3": "^0.10.4",
+    "grunt-contrib-clean": "^0.6.0",
     "load-grunt-tasks": "^2.0.0"
   }
 }

@@ -174,6 +174,14 @@ module.exports = function(grunt) {
           {dest: '<%= fileConfig.uploadPrivatePath %>', cwd: '<%= fileConfig.downloadPrivatePath %>', action: 'download'}
         ]
       },
+    },
+
+    clean : {
+      backupPublic : {
+        src : [
+          '<%= fileConfig.downloadPublicPath %>**'
+        ]
+      }
     }
 
   };
@@ -187,7 +195,46 @@ module.exports = function(grunt) {
 
   grunt.initConfig(taskConfig);
 
-  grunt.registerTask('default', [
+  grunt.registerTask('default', function() {
+    console.log('This doesn\'t do anything.');
+  });
 
+  grunt.registerTask('s3:upload', [
+    'aws_s3:deletePublic',
+    'aws_s3:deletePrivate',
+    'aws_s3:uploadPublic',
+    'aws_s3:uploadPrivate'
+  ]);
+
+  grunt.registerTask('s3:upload:debug', [
+    'aws_s3:deletePublicDebug',
+    'aws_s3:deletePrivateDebug',
+    'aws_s3:uploadPublicDebug',
+    'aws_s3:uploadPrivateDebug'
+  ]);
+
+  grunt.registerTask('s3:download', [
+    's3:deleteBackups',
+    'aws_s3:downloadPublic',
+    'aws_s3:downloadPrivate'
+  ]);
+
+  grunt.registerTask('s3:download:debug', [
+    'aws_s3:downloadPublicDebug',
+    'aws_s3:downloadPrivateDebug'
+  ]);
+
+  grunt.registerTask('s3:delete', [
+    'aws_s3:deletePublic',
+    'aws_s3:deletePrivate'
+  ]);
+
+  grunt.registerTask('s3:delete:debug', [
+    'aws_s3:deletePublicDebug',
+    'aws_s3:deletePrivateDebug'
+  ]);
+
+  grunt.registerTask('s3:deleteBackups', [
+    'clean:backupPublic'
   ]);
 };
